@@ -14,6 +14,7 @@
             --light: #f5f5f5;
             --white: #ffffff;
             --text: #222222;
+            --success: #28a745;
             --radius: 8px;
             --shadow: 0 4px 6px rgba(0,0,0,0.1);
             --transition: all 0.3s ease;
@@ -344,191 +345,257 @@
             margin-right: 0.5rem;
         }
         
-        /* Trainers Section */
-        .trainers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        
-        .trainer-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            text-align: center;
-            border: 1px solid #eee;
-        }
-        
-        .trainer-img {
-            height: 250px;
-            background: var(--secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        .trainer-content {
-            padding: 1.5rem;
-        }
-        
-        .trainer-social {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .trainer-social a {
-            color: var(--primary);
-            font-size: 1.2rem;
-            transition: var(--transition);
-        }
-        
-        .trainer-social a:hover {
-            color: var(--accent);
-        }
-        
-        /* Schedule Section */
-        .schedule {
-            background: var(--light);
-        }
-        
-        .schedule-table {
-            background: var(--white);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            border: 1px solid #eee;
-        }
-        
-        table {
+        /* Payment Popup Styles */
+        .payment-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            border-collapse: collapse;
-        }
-        
-        th, td {
-            padding: 1rem;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
-        
-        th {
-            background: var(--primary);
-            color: var(--white);
-            font-weight: 600;
-        }
-        
-        tr:hover {
-            background: #f9f9f9;
-        }
-        
-        .class-type {
-            display: inline-block;
-            padding: 5px 10px;
-            background: var(--secondary);
-            color: var(--white);
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        /* Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
             align-items: center;
             justify-content: center;
-            color: var(--white);
         }
         
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+        .payment-container {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            width: 90%;
+            max-width: 500px;
+            overflow: hidden;
+            animation: popupSlide 0.3s ease;
+        }
+        
+        @keyframes popupSlide {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .payment-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .close-popup {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .payment-body {
+            padding: 2rem;
         }
         
         .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            margin-bottom: 1.5rem;
         }
         
-        .form-group label {
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
             font-weight: 500;
         }
         
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            padding: 1rem;
+        input, select {
+            width: 100%;
+            padding: 12px;
             border: 1px solid #ddd;
             border-radius: var(--radius);
             font-size: 1rem;
             transition: var(--transition);
         }
         
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
+        input:focus, select:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
         }
         
-        /* Membership List Section */
-        .membership-list {
-            background: var(--light);
+        .card-input-container {
+            position: relative;
         }
         
-        .membership-table {
-            background: var(--white);
+        .card-icons {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 5px;
+        }
+        
+        .card-icon {
+            width: 40px;
+            height: 25px;
+            background: #f0f0f0;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .row {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .row .form-group {
+            flex: 1;
+        }
+        
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .payment-method {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            border: 2px solid #ddd;
             border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            border: 1px solid #eee;
+            cursor: pointer;
+            transition: var(--transition);
         }
         
-        .membership-table table {
-            width: 100%;
+        .payment-method.active {
+            border-color: var(--primary);
+            background: #f8f9fa;
         }
         
-        .membership-table th {
-            background: var(--primary);
-            color: var(--white);
+        .payment-method i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
         }
         
-        .status-active {
-            color: #2ecc71;
+        .security-notice {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: var(--radius);
+            padding: 1rem;
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .security-notice i {
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+        
+        .order-summary {
+            background: #f8f9fa;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .summary-total {
+            border-top: 1px solid #ddd;
+            padding-top: 0.5rem;
+            margin-top: 0.5rem;
             font-weight: 600;
+            font-size: 1.1rem;
         }
         
-        .status-expired {
-            color: #e74c3c;
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            color: var(--success);
+        }
+        
+        .success-message i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: checkmark 0.5s ease-in-out;
+        }
+        
+        @keyframes checkmark {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .success-message h3 {
+            color: var(--success);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .success-details {
+            background: #f8f9fa;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+        
+        .success-details p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .success-details .label {
             font-weight: 600;
+            color: var(--primary);
         }
         
         /* Footer */
@@ -633,12 +700,16 @@
                 padding: 150px 0 80px;
             }
             
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .membership-card.popular {
                 transform: scale(1);
+            }
+            
+            .payment-methods {
+                flex-direction: column;
+            }
+            
+            .row {
+                flex-direction: column;
             }
         }
     </style>
@@ -655,7 +726,6 @@
                 <li><a href="#membership">Membership</a></li>
                 <li><a href="#trainers">Trainers</a></li>
                 <li><a href="#schedule">Schedule</a></li>
-                <li><a href="#membership-list">Members</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <button class="mobile-menu">
@@ -763,7 +833,7 @@
                         <li><i class="fas fa-times"></i> Personal Trainer</li>
                         <li><i class="fas fa-times"></i> Nutrition Plan</li>
                     </ul>
-                    <a href="#" class="btn">Select Plan</a>
+                    <button class="btn select-plan" data-plan="Basic" data-price="29">Select Plan</button>
                 </div>
                 <div class="membership-card popular">
                     <div class="popular-badge">Most Popular</div>
@@ -776,7 +846,7 @@
                         <li><i class="fas fa-check"></i> 2 PT Sessions/Month</li>
                         <li><i class="fas fa-times"></i> Nutrition Plan</li>
                     </ul>
-                    <a href="#" class="btn">Select Plan</a>
+                    <button class="btn select-plan" data-plan="Premium" data-price="49">Select Plan</button>
                 </div>
                 <div class="membership-card">
                     <h3>Elite</h3>
@@ -788,71 +858,8 @@
                         <li><i class="fas fa-check"></i> 8 PT Sessions/Month</li>
                         <li><i class="fas fa-check"></i> Custom Nutrition Plan</li>
                     </ul>
-                    <a href="#" class="btn">Select Plan</a>
+                    <button class="btn select-plan" data-plan="Elite" data-price="79">Select Plan</button>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Membership List Section -->
-    <section class="membership-list" id="membership-list">
-        <div class="container">
-            <h2>Current Members</h2>
-            <div class="membership-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Member ID</th>
-                            <th>Name</th>
-                            <th>Membership Type</th>
-                            <th>Join Date</th>
-                            <th>Expiry Date</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>GF001</td>
-                            <td>John Smith</td>
-                            <td>Premium</td>
-                            <td>2023-05-15</td>
-                            <td>2024-05-15</td>
-                            <td class="status-active">Active</td>
-                        </tr>
-                        <tr>
-                            <td>GF002</td>
-                            <td>Sarah Johnson</td>
-                            <td>Elite</td>
-                            <td>2023-07-22</td>
-                            <td>2024-07-22</td>
-                            <td class="status-active">Active</td>
-                        </tr>
-                        <tr>
-                            <td>GF003</td>
-                            <td>Michael Brown</td>
-                            <td>Basic</td>
-                            <td>2023-09-10</td>
-                            <td>2024-03-10</td>
-                            <td class="status-active">Active</td>
-                        </tr>
-                        <tr>
-                            <td>GF004</td>
-                            <td>Emily Davis</td>
-                            <td>Premium</td>
-                            <td>2023-04-05</td>
-                            <td>2023-10-05</td>
-                            <td class="status-expired">Expired</td>
-                        </tr>
-                        <tr>
-                            <td>GF005</td>
-                            <td>Robert Wilson</td>
-                            <td>Elite</td>
-                            <td>2023-08-18</td>
-                            <td>2024-08-18</td>
-                            <td class="status-active">Active</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </section>
@@ -897,6 +904,139 @@
         </div>
     </footer>
 
+    <!-- Payment Popup -->
+    <div class="payment-popup" id="paymentPopup">
+        <div class="payment-container">
+            <div class="payment-header">
+                <h3><i class="fas fa-lock"></i> Secure Payment</h3>
+                <p id="selectedPlanText">Complete your membership</p>
+                <button class="close-popup" id="closePopup">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="payment-body">
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-item">
+                        <span id="planName">Premium Membership</span>
+                        <span id="planPrice">$49.00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Initiation Fee</span>
+                        <span>$25.00</span>
+                    </div>
+                    <div class="summary-item summary-total">
+                        <span>Total</span>
+                        <span id="totalPrice">$74.00</span>
+                    </div>
+                </div>
+                
+                <!-- Payment Methods -->
+                <div class="payment-methods">
+                    <div class="payment-method active" data-method="card">
+                        <i class="far fa-credit-card"></i>
+                        <div>Credit Card</div>
+                    </div>
+                    <div class="payment-method" data-method="paypal">
+                        <i class="fab fa-paypal"></i>
+                        <div>PayPal</div>
+                    </div>
+                    <div class="payment-method" data-method="bank">
+                        <i class="fas fa-university"></i>
+                        <div>Bank Transfer</div>
+                    </div>
+                </div>
+                
+                <!-- Credit Card Form -->
+                <div id="card-form" class="payment-form">
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <div class="card-input-container">
+                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                            <div class="card-icons">
+                                <div class="card-icon">VISA</div>
+                                <div class="card-icon">MC</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="expiry-date">Expiry Date</label>
+                            <input type="text" id="expiry-date" placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="card-name">Name on Card</label>
+                        <input type="text" id="card-name" placeholder="John Doe">
+                    </div>
+                </div>
+                
+                <!-- PayPal Form (Hidden by default) -->
+                <div id="paypal-form" class="payment-form" style="display: none;">
+                    <div class="form-group">
+                        <p>You will be redirected to PayPal to complete your payment securely.</p>
+                    </div>
+                </div>
+                
+                <!-- Bank Transfer Form (Hidden by default) -->
+                <div id="bank-form" class="payment-form" style="display: none;">
+                    <div class="form-group">
+                        <label>Bank Account Details</label>
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: var(--radius);">
+                            <p><strong>Bank:</strong> EliteFit Trust Bank</p>
+                            <p><strong>Account:</strong> 123456789</p>
+                            <p><strong>Routing:</strong> 021000021</p>
+                            <p><strong>Reference:</strong> MEM-[Your Name]</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn" id="pay-button">
+                    <i class="fas fa-lock"></i> Complete Payment
+                </button>
+                
+                <div class="security-notice">
+                    <i class="fas fa-shield-alt"></i>
+                    Your payment information is encrypted and secure
+                </div>
+            </div>
+            
+            <!-- Loading State -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <h3>Processing Payment...</h3>
+                <p>Please don't close this window</p>
+            </div>
+            
+            <!-- Success Message -->
+            <div class="success-message" id="success">
+                <i class="fas fa-check-circle"></i>
+                <h3>Payment Received!</h3>
+                <p>Your payment has been successfully processed</p>
+                
+                <div class="success-details">
+                    <p><span class="label">Membership Type:</span> <span id="successPlan">Premium</span></p>
+                    <p><span class="label">Amount Paid:</span> <span id="successAmount">$74.00</span></p>
+                    <p><span class="label">Transaction ID:</span> <span>TX-987654321</span></p>
+                    <p><span class="label">Date:</span> <span id="successDate">Loading...</span></p>
+                </div>
+                
+                <p>Welcome to EliteFit Gym! Your membership is now active.</p>
+                <button class="btn btn-success" id="successBtn">
+                    Continue to Dashboard
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Mobile Menu Toggle
         document.addEventListener('DOMContentLoaded', function() {
@@ -932,6 +1072,178 @@
                     header.style.backdropFilter = 'none';
                 }
             });
+            
+            // Payment Popup Functionality
+            const paymentPopup = document.getElementById('paymentPopup');
+            const closePopup = document.getElementById('closePopup');
+            const selectPlanButtons = document.querySelectorAll('.select-plan');
+            const planName = document.getElementById('planName');
+            const planPrice = document.getElementById('planPrice');
+            const totalPrice = document.getElementById('totalPrice');
+            const selectedPlanText = document.getElementById('selectedPlanText');
+            const payButton = document.getElementById('pay-button');
+            const loading = document.getElementById('loading');
+            const success = document.getElementById('success');
+            const successBtn = document.getElementById('successBtn');
+            const paymentBody = document.querySelector('.payment-body');
+            const successPlan = document.getElementById('successPlan');
+            const successAmount = document.getElementById('successAmount');
+            const successDate = document.getElementById('successDate');
+            
+            // Open payment popup when selecting a plan
+            selectPlanButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const plan = this.getAttribute('data-plan');
+                    const price = this.getAttribute('data-price');
+                    const total = parseInt(price) + 25;
+                    
+                    planName.textContent = `${plan} Membership`;
+                    planPrice.textContent = `$${price}.00`;
+                    totalPrice.textContent = `$${total}.00`;
+                    selectedPlanText.textContent = `Complete your ${plan} Membership`;
+                    
+                    // Set success message details
+                    successPlan.textContent = `${plan} Membership`;
+                    successAmount.textContent = `$${total}.00`;
+                    
+                    paymentPopup.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Close payment popup
+            closePopup.addEventListener('click', function() {
+                paymentPopup.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                resetPaymentForm();
+            });
+            
+            // Close popup when clicking outside
+            paymentPopup.addEventListener('click', function(e) {
+                if (e.target === paymentPopup) {
+                    paymentPopup.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    resetPaymentForm();
+                }
+            });
+            
+            // Payment method selection
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.addEventListener('click', function() {
+                    // Remove active class from all methods
+                    document.querySelectorAll('.payment-method').forEach(m => {
+                        m.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked method
+                    this.classList.add('active');
+                    
+                    // Hide all forms
+                    document.querySelectorAll('.payment-form').forEach(form => {
+                        form.style.display = 'none';
+                    });
+                    
+                    // Show selected form
+                    const methodType = this.getAttribute('data-method');
+                    document.getElementById(`${methodType}-form`).style.display = 'block';
+                });
+            });
+            
+            // Format card number
+            document.getElementById('card-number').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+                let matches = value.match(/\d{4,16}/g);
+                let match = matches && matches[0] || '';
+                let parts = [];
+                
+                for (let i = 0; i < match.length; i += 4) {
+                    parts.push(match.substring(i, i + 4));
+                }
+                
+                if (parts.length) {
+                    e.target.value = parts.join(' ');
+                } else {
+                    e.target.value = value;
+                }
+            });
+            
+            // Format expiry date
+            document.getElementById('expiry-date').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length >= 2) {
+                    e.target.value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+            });
+            
+            // Payment processing simulation
+            payButton.addEventListener('click', function() {
+                const activeMethod = document.querySelector('.payment-method.active').getAttribute('data-method');
+                
+                // Basic validation for card payments
+                if (activeMethod === 'card') {
+                    const cardNumber = document.getElementById('card-number').value;
+                    const expiryDate = document.getElementById('expiry-date').value;
+                    const cvv = document.getElementById('cvv').value;
+                    const cardName = document.getElementById('card-name').value;
+                    
+                    if (!cardNumber || !expiryDate || !cvv || !cardName) {
+                        alert('Please fill in all card details');
+                        return;
+                    }
+                    
+                    if (cardNumber.replace(/\s/g, '').length !== 16) {
+                        alert('Please enter a valid 16-digit card number');
+                        return;
+                    }
+                }
+                
+                // Show loading state
+                paymentBody.style.display = 'none';
+                loading.style.display = 'block';
+                
+                // Set current date for success message
+                const now = new Date();
+                successDate.textContent = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+                
+                // Simulate payment processing
+                setTimeout(() => {
+                    loading.style.display = 'none';
+                    success.style.display = 'block';
+                }, 3000);
+            });
+            
+            // Success button
+            successBtn.addEventListener('click', function() {
+                paymentPopup.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                resetPaymentForm();
+            });
+            
+            // CVV input restriction
+            document.getElementById('cvv').addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/\D/g, '').substring(0, 3);
+            });
+            
+            // Reset payment form function
+            function resetPaymentForm() {
+                paymentBody.style.display = 'block';
+                loading.style.display = 'none';
+                success.style.display = 'none';
+                document.getElementById('card-number').value = '';
+                document.getElementById('expiry-date').value = '';
+                document.getElementById('cvv').value = '';
+                document.getElementById('card-name').value = '';
+                
+                // Reset to credit card payment method
+                document.querySelectorAll('.payment-method').forEach(m => {
+                    m.classList.remove('active');
+                });
+                document.querySelector('.payment-method[data-method="card"]').classList.add('active');
+                document.querySelectorAll('.payment-form').forEach(form => {
+                    form.style.display = 'none';
+                });
+                document.getElementById('card-form').style.display = 'block';
+            }
         });
     </script>
 </body>
